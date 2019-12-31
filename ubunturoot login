@@ -1,4 +1,4 @@
-设置root密码
+#设置root密码
 
 2.修改/usr/share/lightdm/lightdm.conf.d/50-ubuntu.conf文件内容
 
