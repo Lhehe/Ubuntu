@@ -1,1 +1,1 @@
-# Ubuntu 教程
+Ubuntu 19.10
