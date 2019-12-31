@@ -1,0 +1,26 @@
+lsb_release -a
+动态获取：top -bn1 | grep id, | awk '{print $8}'
+
+检查是否启用了交换分区：
+sudo swapon --show 
+先停止原来的交换分区
+sudo swapoff -v /swapfile
+然后删除
+sudo rm /swapfile
+
+通过以下命令创建一个用于 swap 的文件：
+touch  /swapfile
+sudo fallocate -l 1G /swapfile
+
+也可以使用以下命令创建 swap 文件：
+sudo dd if=/dev/zero of=/swapfile bs=1024 count=1048576
+
+
+使用 mkswap 实用程序在文件上设置 Linux SWAP 区域：
+sudo mkswap /swapfile
+
+使用以下命令激活 swap 文件：
+sudo swapon /swapfile
+
+要让创建好的 swap 分区永久生效，可以将 swapfile 路径内容写入到 /etc/fstab 文件当中：
+/swapfile swap swap defaults 0 0
