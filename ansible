@@ -1,0 +1,45 @@
+准备
+
+要学习本教程，您需要：
+
+    两个或更多Ubuntu 18.04服务器。其中一个将用作Ansible服务器，其余部分将用作Ansible主机。每个人都应该拥有一个具有权限且配置了基本防火墙的可使用sudo权限的非root用户
+
+批量操作时会需要输入yes/no 可以更改/etc/ansible/ansible.cfg 
+host_key_checking = False
+
+添加 /etc/hosts 域名解析
+配置ansible服务器无密登录其它机器
+
+
+- 安装Ansible
+
+sudo apt update
+sudo apt install software-properties-common
+
+然后键入以下命令添加Ansible PPA：
+
+sudo apt-add-repository ppa:ansible/ansible
+
+按ENTER接受PPA添加。
+
+接下来，再次刷新系统的包索引，以便它知道PPA中可用的包：
+
+sudo apt update
+
+在此更新后，您可以安装Ansible软件：
+
+sudo apt install ansible
+
+最后测试效果
+ansible -m ping 主机
+
+
+批量更改密码
+
+ansible -m shell -a 'echo user:密码 | chpasswd' 主机
+成功后会有下面的提示：
+10.0.0.2 | SUCCESS | rc=0 >>
+
+附：
+ansible批量修改redhat密码的命令：
+ansible -m shell -a 'echo xx\$0*xx\& | passwd --stdin root' 主机
